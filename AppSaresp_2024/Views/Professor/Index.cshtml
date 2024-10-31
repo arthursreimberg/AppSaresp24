@@ -1,0 +1,43 @@
+﻿@model IEnumerable<AppSaresp_2024.Models.Professor>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Professores</h1>
+
+<p> <a class=" ="btn btn-primary" asp-action="CadastrarProfessor" asp-controller="Professor">Cadastrar</a></p>
+
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">@Html.DisplayNameFor(model => model.IdProfessor)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.NomeProfessor)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.CPF)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.RG)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.TelefoneProf)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.DataNascProfessor)</th>
+                <th scope="col">Ação</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Professor professor in Model)
+            {
+                <tr>
+                    <td>@professor.IdProfessor</td>
+                    <td>@professor.NomeProfessor</td>
+                    <td>@professor.CPF</td>
+                    <td>@professor.RG</td>
+                    <td>@professor.TelefoneProf</td>
+                    <td>@professor.DataNascProfessor.ToString("dd/MM/yyyy")</td>
+                    <td>
+                        <button type="button" class="btn btn-danger">
+                            @Html.ActionLink("Excluir", "ExcluirProfessor", new { id = professor.IdProfessor}, new { onclick = "return confirm ('Deseja mesmo apagar o registro?');" })
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
